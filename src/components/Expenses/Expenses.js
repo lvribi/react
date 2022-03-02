@@ -8,6 +8,7 @@ const Expenses = (props) => {
   return (
     <div>
       <Card className="expenses">
+      
         <ExpenseItem expense={props.expenseData[0]}></ExpenseItem>
         <ExpenseItem expense={props.expenseData[1]}></ExpenseItem>
         <ExpenseItem expense={props.expenseData[2]}></ExpenseItem>

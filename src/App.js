@@ -1,4 +1,17 @@
 import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
+
+import TestComponent from './components/TestComponent';
+
+const addExpenseHandler=(dataFromChild)=>
+{
+  const dataToAdd = {
+    ...dataFromChild
+  };
+
+  console.log(dataToAdd);
+};
+
 function App() {
   const expenses = [
     {
@@ -24,7 +37,7 @@ function App() {
 
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense onAddExpense={addExpenseHandler}/>
       <Expenses expenseData={expenses}/>
     </div>
   );
