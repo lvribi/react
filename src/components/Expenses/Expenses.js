@@ -12,15 +12,18 @@ const Expenses = (props) => {
   };
 
   const num = 1;
+
   return (
     <div>
       <ExpensesFilter onEnteredData={onEnteredDataHandler} />
       <Card className="expenses">
         <h1>yeaaaaaaaaaaaaaaaaaaah : {myDataRetrived}</h1>
-        <ExpenseItem expense={props.expenseData[0]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[1]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[2]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[3]}></ExpenseItem>
+
+        {props.expenseData.map((myExpense) => (
+          <ExpenseItem key={myExpense.id} expense={myExpense} />
+        ))}
+
+
       </Card>
       <MyComponent num={num}></MyComponent>
     </div>
