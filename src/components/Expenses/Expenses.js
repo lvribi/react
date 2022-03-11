@@ -5,25 +5,24 @@ import "./Expenses.css";
 import ExpensesFilter from "./ExpensesFilter";
 import React, { useState } from "react";
 const Expenses = (props) => {
-  const [myDataRetrived, setDateRetrived] = useState("");
-
+  const [filteredYear, setFilteredYear] = useState("2020");
   const onEnteredDataHandler = (dataFromParent) => {
-    setDateRetrived(dataFromParent);
+    setFilteredYear(dataFromParent);
   };
+
+  let dataToBeFiltred = props.expenseData.filter(
+    x => {return x.date.getFullYear().toString() === filteredYear}
+  );
 
   const num = 1;
 
   return (
     <div>
-      <ExpensesFilter onEnteredData={onEnteredDataHandler} />
+      <ExpensesFilter selected={filteredYear} onEnteredData={onEnteredDataHandler} />
       <Card className="expenses">
-        <h1>yeaaaaaaaaaaaaaaaaaaah : {myDataRetrived}</h1>
-
-        {props.expenseData.map((myExpense) => (
+        {dataToBeFiltred.map((myExpense) => (
           <ExpenseItem key={myExpense.id} expense={myExpense} />
         ))}
-
-
       </Card>
       <MyComponent num={num}></MyComponent>
     </div>
