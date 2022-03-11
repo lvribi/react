@@ -1,9 +1,10 @@
-import ExpenseItem from "./ExpenseItem";
+import React, { useState } from "react";
+import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import MyComponent from "../MyComponent";
-import "./Expenses.css";
+
 import ExpensesFilter from "./ExpensesFilter";
-import React, { useState } from "react";
+import "./Expenses.css";
 const Expenses = (props) => {
   const [filteredYear, setFilteredYear] = useState("2020");
   const onEnteredDataHandler = (dataFromParent) => {
@@ -16,13 +17,16 @@ const Expenses = (props) => {
 
   const num = 1;
 
+ 
+
   return (
     <div>
-      <ExpensesFilter selected={filteredYear} onEnteredData={onEnteredDataHandler} />
+            
+
       <Card className="expenses">
-        {dataToBeFiltred.map((myExpense) => (
-          <ExpenseItem key={myExpense.id} expense={myExpense} />
-        ))}
+      <ExpensesFilter selected={filteredYear} onEnteredData={onEnteredDataHandler} />
+        {/*dataToBeFiltred.length<=0 ? <p>No data found </p> : dataToBeFiltred.map((myExpense) => (<ExpenseItem key={myExpense.id} expense={myExpense} />))*/}
+       {<ExpensesList items={dataToBeFiltred}/>}
       </Card>
       <MyComponent num={num}></MyComponent>
     </div>

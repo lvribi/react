@@ -7,7 +7,6 @@ import {useState} from 'react';
 const ExpenseItem = (props) => {
   
 
-  //const [myTitle,setTtile] = useState(props.expense.title)
 const [title,setTtile] = useState(props.expense.title)
   
   const onClickHandler = () => {
