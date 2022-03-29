@@ -1,26 +1,32 @@
-import ExpenseItem from "./ExpenseItem";
+import React, { useState } from "react";
+import ExpensesList from "./ExpensesList";
 import Card from "../UI/Card";
 import MyComponent from "../MyComponent";
-import "./Expenses.css";
-import ExpensesFilter from "./ExpensesFilter";
-import React, { useState } from "react";
-const Expenses = (props) => {
-  const [myDataRetrived, setDateRetrived] = useState("");
 
+import ExpensesFilter from "./ExpensesFilter";
+import "./Expenses.css";
+const Expenses = (props) => {
+  const [filteredYear, setFilteredYear] = useState("2020");
   const onEnteredDataHandler = (dataFromParent) => {
-    setDateRetrived(dataFromParent);
+    setFilteredYear(dataFromParent);
   };
 
+  let dataToBeFiltred = props.expenseData.filter(
+    x => {return x.date.getFullYear().toString() === filteredYear}
+  );
+
   const num = 1;
+
+ 
+
   return (
     <div>
-      <ExpensesFilter onEnteredData={onEnteredDataHandler} />
+            
+
       <Card className="expenses">
-        <h1>yeaaaaaaaaaaaaaaaaaaah : {myDataRetrived}</h1>
-        <ExpenseItem expense={props.expenseData[0]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[1]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[2]}></ExpenseItem>
-        <ExpenseItem expense={props.expenseData[3]}></ExpenseItem>
+      <ExpensesFilter selected={filteredYear} onEnteredData={onEnteredDataHandler} />
+        {/*dataToBeFiltred.length<=0 ? <p>No data found </p> : dataToBeFiltred.map((myExpense) => (<ExpenseItem key={myExpense.id} expense={myExpense} />))*/}
+       {<ExpensesList items={dataToBeFiltred}/>}
       </Card>
       <MyComponent num={num}></MyComponent>
     </div>
